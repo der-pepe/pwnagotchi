@@ -34,7 +34,7 @@ install-ng:
 
 image-ng:
 	cd builder-ng && sudo /usr/bin/packer build -var "pwn_hostname=$(PWN_HOSTNAME)" -var "pwn_version=$(PWN_VERSION)" pwnagotchi.json
-	sudo mv builder/output-pwnagotchi/image pwnagotchi-raspios-lite-$(PWN_VERSION).img
+	sudo mv builder-ng/pwnagotchi.img pwnagotchi-raspios-lite-$(PWN_VERSION).img
 	sudo sha256sum pwnagotchi-raspios-lite-$(PWN_VERSION).img > pwnagotchi-raspios-lite-$(PWN_VERSION).sha256
 	sudo zip pwnagotchi-raspios-lite-$(PWN_VERSION).zip pwnagotchi-raspios-lite-$(PWN_VERSION).sha256 pwnagotchi-raspios-lite-$(PWN_VERSION).img
 
@@ -44,4 +44,4 @@ clean:
 	rm -f pwnagotchi-raspbian-lite-*.zip pwnagotchi-raspbian-lite-*.img pwnagotchi-raspbian-lite-*.sha256
 	rm -f pwnagotchi-raspios-lite-*.zip pwnagotchi-raspios-lite-*.img pwnagotchi-raspios-lite-*.sha256
 	rm -rf builder/output-pwnagotchi  builder/packer_cache
-	rm -rf builder-ng/output-pwnagotchi  builder-ng/packer_cache
+	rm -rf builder-ng/pwnagotchi.img  builder-ng/packer_cache
