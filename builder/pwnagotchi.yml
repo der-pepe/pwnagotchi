@@ -36,7 +36,7 @@
         - dnsmasq.service
     packages:
       bettercap:
-        url: "https://github.com/bettercap/bettercap/releases/download/v2.31.0/bettercap_linux_armhf_v2.31.0.zip"
+        url: "https://github.com/bettercap/bettercap/releases/download/v2.31.1/bettercap_linux_armhf_v2.31.1.zip"
         ui: "https://github.com/bettercap/ui/releases/download/v1.3.0/ui.zip"
       pwngrid:
         url: "https://github.com/evilsocket/pwngrid/releases/download/v1.10.3/pwngrid_linux_armhf_v1.10.3.zip"
@@ -137,6 +137,14 @@
     apt_repository:
       repo: deb http://http.re4son-kernel.com/re4son/ kali-pi main
       state: present
+
+  - name: Give priority to re4son-kernel repository
+    copy:
+      dest: "/etc/apt/preferences.d/kali.pref"
+      content: |
+        Package: *
+        Pin: release n=kali-pi
+        Pin-Priority: 999
 
   - name: add firmware packages to hold
     dpkg_selections:
