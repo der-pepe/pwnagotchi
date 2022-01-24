@@ -138,10 +138,12 @@
       repo: deb http://http.re4son-kernel.com/re4son/ kali-pi main
       state: present
 
-  - name: Give priority to re4son-kernel repository
+  - name: create /etc/apt/preferences.d/kali.pref
     copy:
-      dest: "/etc/apt/preferences.d/kali.pref"
+      dest: /etc/apt/preferences.d/kali.pref
+      force: yes
       content: |
+        # ensure kali packages that are installed take precedence
         Package: *
         Pin: release n=kali-pi
         Pin-Priority: 999
